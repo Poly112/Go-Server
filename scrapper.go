@@ -72,7 +72,7 @@ func scrapeFeed(db *gorm.DB, wg *sync.WaitGroup, feed Feeds) {
 		}
 		result := db.WithContext(context.Background()).Create(&post)
 		if result.Error != nil {
-			if strings.Contains(result.Error.Error(), "duplicate key") {
+			if strings.Contains(result.Error.Error(), "Duplicate") {
 				continue
 			}
 			log.Panicln("Failed to create post:", result.Error)
